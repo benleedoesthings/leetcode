@@ -10,40 +10,27 @@
  */
 
 class Solution {
-    private ListNode merge(ListNode list1, ListNode list2) {
-        ListNode dummy = new ListNode();
-        ListNode curr = dummy;
-
-        while (list1 != null && list2 != null) {
-            if (list1.val <= list2.val) {
-                curr.next = list1;
-                list1 = list1.next;
-            } else {
-                curr.next = list2;
-                list2 = list2.next;
-            }
-            curr = curr.next;
-        }
-
-        while (list1 != null) {
-            curr.next = list1;
-            list1 = list1.next;
-            curr = curr.next;
-        }
-        while (list2 != null) {
-            curr.next = list2;
-            list2 = list2.next;
-            curr = curr.next;
-        }
-        return dummy.next;
-    }
-
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists.length == 0) return null;
-        ListNode list = lists[0];
-        for (int i = 1; i < lists.length; i++) {
-            list = merge(list, lists[i]);
+        ArrayList<Integer> stuff = new ArrayList<>();
+        
+        for (ListNode list : lists) {
+            while (list != null) {
+                stuff.add(list.val);
+                list = list.next;
+            }
         }
-        return list;
+
+        Collections.sort(stuff);
+
+        //System.out.println(stuff);
+
+        ListNode dummy = new ListNode();
+        ListNode head = dummy;
+        for (int item : stuff) {
+            dummy.next = new ListNode(item);
+            dummy = dummy.next;
+        }
+
+        return head.next;
     }
 }
