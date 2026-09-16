@@ -8,66 +8,42 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
 class Solution {
-    ListNode newPtr;
+    private ListNode merge(ListNode list1, ListNode list2) {
+        ListNode dummy = new ListNode();
+        ListNode curr = dummy;
 
-    // just link the actual node
-    public void add(ListNode node) {
-        newPtr.next = node;
-        newPtr = newPtr.next;
-    }
-
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        if (list1 == null) {
-            return list2;
-        }
-        if (list2 == null) {
-            return list1;
-        }
-
-        // Make dummy node
-        ListNode dummy = new ListNode(0);
-
-        ListNode pt1 = list1;
-        ListNode pt2 = list2;
-
-        newPtr = dummy;
-
-        // Basically it's a race
-        // If first one smaller, move first pointer
-        // If second one smaller, move second one type thing
-        while (pt1 != null && pt2 != null) {
-            if (pt2.val < pt1.val) {
-                add(pt2);
-                pt2 = pt2.next;
+        while (list1 != null && list2 != null) {
+            if (list1.val <= list2.val) {
+                curr.next = list1;
+                list1 = list1.next;
             } else {
-                add(pt1);
-                pt1 = pt1.next;
+                curr.next = list2;
+                list2 = list2.next;
             }
+            curr = curr.next;
         }
 
-        // until one of them is null
-        while (pt1 != null) {
-            add(pt1);
-            pt1 = pt1.next;
+        while (list1 != null) {
+            curr.next = list1;
+            list1 = list1.next;
+            curr = curr.next;
         }
-        while (pt2 != null) {
-            add(pt2);
-            pt2 = pt2.next;
+        while (list2 != null) {
+            curr.next = list2;
+            list2 = list2.next;
+            curr = curr.next;
         }
-
         return dummy.next;
     }
 
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) return null;
-        if (lists.length == 1) return lists[0];
-
-        ListNode theList = lists[0];
-        System.out.println(theList == null);
+        ListNode list = lists[0];
         for (int i = 1; i < lists.length; i++) {
-            theList = mergeTwoLists(theList, lists[i]);
+            list = merge(list, lists[i]);
         }
-        return theList;
+        return list;
     }
 }
