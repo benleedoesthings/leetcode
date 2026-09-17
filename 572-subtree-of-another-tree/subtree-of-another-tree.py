@@ -8,17 +8,15 @@
 class Solution:   
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         def dfs(node, target):
-            print("node=", node.val if node else None)
+            #print("node=", node.val if node else None)
             if not node:
                 return False
 
             if node.val == target:
-                print("Checking equality")
+                #print("Checking equality")
                 if equal(node, subRoot):
-                    print("It's so true")
+                    #print("It's so true")
                     return True
-                else:
-                    print("It's not true")
 
             return dfs(node.left, target) or dfs(node.right, target)
 
