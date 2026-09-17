@@ -7,17 +7,20 @@
 
 class Solution:   
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        possible = []
-
         def dfs(node, target):
+            print("node=", node.val if node else None)
             if not node:
-                return
+                return False
 
             if node.val == target:
-                possible.append(node)
+                print("Checking equality")
+                if equal(node, subRoot):
+                    print("It's so true")
+                    return True
+                else:
+                    print("It's not true")
 
-            dfs(node.left, target)
-            dfs(node.right, target)
+            return dfs(node.left, target) or dfs(node.right, target)
 
         def equal(node1, node2):
             if node1 and not node2 or not node1 and node2:
@@ -31,11 +34,4 @@ class Solution:
 
             return equal(node1.left, node2.left) and equal(node1.right, node2.right)
 
-        dfs(root, subRoot.val)
-
-        for node in possible:
-            if equal(node, subRoot):
-                return True
-        return False
-
-        
+        return dfs(root, subRoot.val)
