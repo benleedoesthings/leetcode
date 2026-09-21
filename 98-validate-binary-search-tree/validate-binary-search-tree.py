@@ -7,16 +7,29 @@
 
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        lowest = -2 ** 31
-        highest = 2 ** 31 - 1
+        valid = True
+        last_val = -2 ** 31 - 1
+        def inorder(node):
+            nonlocal valid
+            nonlocal last_val
 
-        def valid(node, low, high):
             if not node:
-                return True
+                return
 
-            if not(low <= node.val <= high):
-                return False
+            inorder(node.left)
 
-            return valid(node.left, low, node.val - 1) and valid(node.right, node.val + 1, high)
+            print("node.val", node.val)
+            print("last:", last_val)
+            print(last_val >= node.val)
 
-        return valid(root, lowest, highest)
+            if last_val >= node.val:
+                print("It should be here")
+                valid = False
+                return
+
+            last_val = node.val
+
+            inorder(node.right)
+
+        inorder(root)
+        return valid
