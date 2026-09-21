@@ -18,12 +18,7 @@ class Solution:
 
             inorder(node.left)
 
-            print("node.val", node.val)
-            print("last:", last_val)
-            print(last_val >= node.val)
-
             if last_val >= node.val:
-                print("It should be here")
                 valid = False
                 return
 
