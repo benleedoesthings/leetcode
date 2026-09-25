@@ -13,8 +13,8 @@ class Solution:
                 return
 
             path_sum += node.val
-            print("added", node.val)
-            print("sum is now", path_sum)
+            #print("added", node.val)
+            #print("sum is now", path_sum)
 
             if not node.left and not node.right and path_sum == targetSum:
                 found = True
