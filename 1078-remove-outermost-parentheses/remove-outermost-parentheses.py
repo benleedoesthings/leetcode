@@ -1,7 +1,6 @@
 class Solution:
     def removeOuterParentheses(self, s: str) -> str:
         count = 0
-        fragment_started = False
         ans = []
 
         for ch in s:
@@ -10,10 +9,8 @@ class Solution:
             else:
                 count -= 1
 
-            if fragment_started and count == 0:
-                fragment_started = False
-            elif not fragment_started:
-                fragment_started = True
+            if count == 0 and ch == ")" or count == 1 and ch == "(":
+                continue
             else:
                 ans.append(ch)
 
