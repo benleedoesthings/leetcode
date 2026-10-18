@@ -3,25 +3,11 @@ class Solution:
         if n <= 0:
             return False
 
-        def prime(n):
-            #print("checking prime for", n)
-            if n < 2:
-                #print("not")
-                return False
+        while n % 2 == 0:
+            n = n // 2
+        while n % 3 == 0:
+            n = n // 3
+        while n % 5 == 0:
+            n = n // 5
 
-            for i in range(2, math.isqrt(n) + 1):
-                #print("check div by", i, "or", n//i)
-                if n % i == 0 or n % (n//i) == 0:
-                    #print("not")
-                    return False
-
-            #print('is')
-            return True
-
-        for i in range(1, math.isqrt(n) + 1):
-            #print("main: checking factors", i, n//i)
-            if (prime(i) and n % i == 0 and i > 5) or (prime(n // i) and n % (n//i) == 0 and n // i > 5):
-                #print("Factor:", i, "or", n // i)
-                return False
-
-        return True
+        return n == 1
