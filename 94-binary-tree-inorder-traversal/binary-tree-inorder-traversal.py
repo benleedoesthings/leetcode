@@ -25,14 +25,12 @@ class Solution:
             while curr:
                 stack.append(curr)
                 curr = curr.left
-                #print("going left", pr(stack))
 
             # pop the last one
             popped = stack.pop()
             ans.append(popped.val)
-            #print("i popped", pr([popped]))
-            #print("result", pr(stack))
 
+            # move to the right now
             curr = popped.right
 
         return ans
