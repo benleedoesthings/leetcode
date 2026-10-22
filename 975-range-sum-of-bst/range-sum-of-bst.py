@@ -9,24 +9,22 @@ class Solution:
         # I love binary search trees
         # I love binary search trees
         # If I repeat this enough I will solve this problem
-        ans = 0
-
-        def dfs(node: TreeNode | None):
-            nonlocal ans
+        def dfs(node: TreeNode | None) -> int:
             if not node:
-                return
+                return 0
 
-            if low <= node.val <= high:
-                ans += node.val
+            print("Node:", node.val)
+
+            ret_val = node.val if low <= node.val <= high else 0
 
             if node.val > low:
                 # the left may be in bounds
-                dfs(node.left)
+                ret_val += dfs(node.left)
 
             if node.val < high:
                 # the right may be in bounds
-                dfs(node.right)
+                ret_val += dfs(node.right)
 
+            return ret_val
 
-        dfs(root)
-        return ans
+        return dfs(root)
