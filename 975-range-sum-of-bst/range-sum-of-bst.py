@@ -11,16 +11,22 @@ class Solution:
         # If I repeat this enough I will solve this problem
         ans = 0
 
-        def inorder(node):
+        def dfs(node: TreeNode | None):
             nonlocal ans
-            if node.left:
-                inorder(node.left)
+            if not node:
+                return
 
             if low <= node.val <= high:
                 ans += node.val
 
-            if node.right:
-                inorder(node.right)
+            if node.val > low:
+                # the left may be in bounds
+                dfs(node.left)
 
-        inorder(root)
+            if node.val < high:
+                # the right may be in bounds
+                dfs(node.right)
+
+
+        dfs(root)
         return ans
