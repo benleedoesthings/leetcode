@@ -9,20 +9,17 @@ class Solution:
         # I love binary search trees
         # I love binary search trees
         # If I repeat this enough I will solve this problem
-        def dfs(node: TreeNode | None) -> int:
-            if not node:
-                return 0
+        if not root:
+            return 0
 
-            ret_val = node.val if low <= node.val <= high else 0
+        ret_val = root.val if low <= root.val <= high else 0
 
-            if node.val > low:
-                # the left may be in bounds
-                ret_val += dfs(node.left)
+        if root.val > low:
+            # the left subtree may be in bounds
+            ret_val += self.rangeSumBST(root.left, low, high)
 
-            if node.val < high:
-                # the right may be in bounds
-                ret_val += dfs(node.right)
+        if root.val < high:
+            # the right subtree may be in bounds
+            ret_val += self.rangeSumBST(root.right, low, high)
 
-            return ret_val
-
-        return dfs(root)
+        return ret_val
