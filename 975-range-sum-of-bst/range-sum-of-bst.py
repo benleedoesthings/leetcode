@@ -13,8 +13,6 @@ class Solution:
             if not node:
                 return 0
 
-            print("Node:", node.val)
-
             ret_val = node.val if low <= node.val <= high else 0
 
             if node.val > low:
