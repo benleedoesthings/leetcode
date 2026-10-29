@@ -31,13 +31,14 @@ class Solution:
         for i, num in enumerate(nums):
             maxed = max_out(num)
             gain = maxed - num
-            num_gain[i] = [gain, i]
+            num_gain[i] = [-gain, i]
 
-        num_gain.sort(reverse=True)
+        heapq.heapify(num_gain)
         #print(num_gain)
 
         for i in range(k):
-            gain, index = num_gain[i]
-            nums[i] += gain
+            gain, index = heapq.heappop(num_gain)
+            #print(gain, index)
+            nums[i] -= gain
 
         return sum(nums)
