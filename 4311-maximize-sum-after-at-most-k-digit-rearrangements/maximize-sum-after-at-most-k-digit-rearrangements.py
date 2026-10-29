@@ -32,14 +32,11 @@ class Solution:
         for i, num in enumerate(nums):
             maxed = max_out(num)
             gain = maxed - num
-            num_gain[i] = -gain
+            num_gain[i] = gain
 
-        heapq.heapify(num_gain)
-
+        num_gain.sort(reverse=True)
         total_gain = 0
-
         for i in range(k):
-            gain = heapq.heappop(num_gain)
-            total_gain -= gain
+            total_gain += num_gain[i]
 
         return og_sum + total_gain
