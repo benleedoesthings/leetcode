@@ -12,7 +12,7 @@ class Solution:
         first_node = (0, k)
         heapq.heappush(heap, first_node)
 
-        while heap:
+        while heap and len(dists) < n:
             dist, curr = heapq.heappop(heap)
             if curr not in dists:
                 dists[curr] = dist
