@@ -5,8 +5,6 @@ class Solution:
             # value, cost
             adj[u].append((v, w))
 
-        print(adj)
-
         dists = {}
         heap = []
         ans = -1
