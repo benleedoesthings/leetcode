@@ -19,18 +19,10 @@ class Solution:
             if curr not in dists:
                 dists[curr] = dist
                 ans = max(ans, dist)
-                #print("Shortest path to", curr, "is", dist)
-                #print(heap)
-
-                #print("Is", curr, "in adj?", curr in adj)
                 
                 for child, cost in adj[curr]:
-                    #print("cost is", cost, "child is", child)
                     if child not in dists:
-                        #print(child, ": adding", cost, "to", dist)
                         heapq.heappush(heap, (cost + dist, child))
-
-        #print(dists)
 
         if len(dists) != n:
             return -1
