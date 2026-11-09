@@ -38,7 +38,7 @@ Between [1, 3]? Ans: 3
         times.sort()
         sorted_q = sorted(queries)
 
-        print(times)
+        #print(times)
 
         active = defaultdict(int)
         i = 0
