@@ -18,9 +18,6 @@ class Solution:
             dfs(node.left)
 
             complement = k - node.val
-            #print("curr val", node.val)
-            #print("complement", complement)
-            #print("nodes", nodes)
             if complement in nodes:
                 found = True
                 return
