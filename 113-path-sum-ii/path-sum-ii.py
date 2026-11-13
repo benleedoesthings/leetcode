@@ -9,21 +9,15 @@ class Solution:
         ans = []
 
         def dfs(node, path, total):
-            #print("Calling with", node, path, total)
             nonlocal ans
 
             if not node:
-                #print("No node")
                 return
 
             if not node.left and not node.right:
                 if total + node.val == targetSum:
-                    #print("Found that sum")
-                    #print(path)
                     ans.append(path + [node.val])
                 return
-
-            #print("Currently on node", node.val)
 
             dfs(node.left, path + [node.val], total + node.val)
             dfs(node.right, path + [node.val], total + node.val)
