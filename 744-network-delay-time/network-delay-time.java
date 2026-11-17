@@ -12,7 +12,7 @@ class VertexDistance implements Comparable<VertexDistance> {
         if (distance == o.distance) {
             return Integer.compare(vertex, o.vertex);
         }
-        return distance - o.distance;
+        return Integer.compare(distance, o.distance);
     }
 
     @Override
@@ -58,7 +58,6 @@ class Solution {
             }
         }
 
-        //System.out.println(distMap);
         if (maxDist == 0 || distMap.size() < n) {
             return -1;
         }
